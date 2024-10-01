@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState("light");
@@ -17,23 +17,38 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 fixed z-10">
+    <div className="navbar bg-base-100 shadow-lg px-4 sm:px-8 fixed z-10">
       <div className="flex-1">
         <a className="btn btn-ghost gap-0 text-secondary text-2xl">
           Byte<span className="text-primary">Project</span>
         </a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal gap-4 px-1 mr-3">
-          <Link to={"/"} className="font-bold">
-            <a>Home</a>
-          </Link>
-          <Link to={"/blogs"} className="font-bold text-primary">
-            <a>Blogs</a>
-          </Link>
-          <Link to={"/bookmarks"} className="font-bold">
-            <a>Bookmarks</a>
-          </Link>
+        <ul className="menu menu-horizontal hidden sm:flex gap-4 px-1 mr-3">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+              isActive ? "font-bold text-primary" : "font-bold"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to={"/blogs"}
+            className={({ isActive }) =>
+              isActive ? "font-bold text-primary" : "font-bold"
+            }
+          >
+            Blogs
+          </NavLink>
+          <NavLink
+            to={"/bookmarks"}
+            className={({ isActive }) =>
+              isActive ? "font-bold text-primary" : "font-bold"
+            }
+          >
+            Bookmarks
+          </NavLink>
         </ul>
         <label className="grid cursor-pointer place-items-center">
           <input
