@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-// import Home from "./Pages/Home";
 import Bookmarks from "./Pages/Bookmarks";
 import Blogs from "./Pages/Blogs";
 import MainLayout from "./Layouts/MainLayout";
@@ -19,6 +18,7 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
+        loader: () => fetch("https://dev.to/api/articles?per_page=20&top=7"),
       },
       {
         path: "/bookmarks",
