@@ -1,17 +1,18 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { useLoaderData, useNavigation, Link } from "react-router-dom";
 import BlogCard from "../Components/BlogCard";
 import Loader from "../Components/Loader";
 
 const Blogs = () => {
   const blogs = useLoaderData();
   const navigation = useNavigation();
-  if (navigation.state === "loading") return <Loader></Loader>;
+
+  if (navigation.state === "loading") return <Loader />;
+
   return (
     <section className="dark:bg-gray-100 dark:text-gray-800">
       <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-        <a
-          rel="noopener noreferrer"
-          href="#"
+        <Link
+          to={`/blog/${blogs[0].id}`}
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50"
         >
           <img
@@ -28,10 +29,10 @@ const Blogs = () => {
             </span>
             <p>{blogs[0].description}</p>
           </div>
-        </a>
+        </Link>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog}></BlogCard>
+          {blogs.slice(1, 19).map((blog) => (
+            <BlogCard key={blog.id} blog={blog} />
           ))}
         </div>
         <div className="flex justify-center">

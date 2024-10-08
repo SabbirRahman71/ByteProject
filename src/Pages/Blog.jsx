@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { IoBookmarksOutline } from "react-icons/io5";
+import { saveBlogs } from "../Utils/Index";
 
 const Blog = () => {
   const blog = useLoaderData();
@@ -12,6 +14,9 @@ const Blog = () => {
     public_reactions_count,
     published_at,
   } = blog;
+  const handleBookmark = (blog) => {
+    saveBlogs(blog);
+  };
 
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
@@ -80,6 +85,14 @@ const Blog = () => {
             </svg>
             <span>Author</span>
           </Link>
+          <div
+            onClick={() => {
+              handleBookmark(blog);
+            }}
+            className=" bg-primary p-3 ml-5 rounded-full hover:bg-opacity-30 bg-opacity-20 hover:scale-105 overflow-hidden cursor-pointer"
+          >
+            <IoBookmarksOutline size={20} className="text-secondary" />
+          </div>
         </div>
         <Outlet></Outlet>
       </article>
